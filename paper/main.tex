@@ -1,0 +1,407 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{authblk}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Hsq}{H^2}
+\newcommand{\Ran}{\operatorname{Ran}}
+\newcommand{\spec}{\sigma}
+\newcommand{\cF}{c_F}
+\newcommand{\1}{\mathbf 1}
+
+\title{Principal Angles Between Arithmetic Weighted-Composition Ranges in $H^2$}
+\author{Shad Claiborne\\\small Independent Researcher\\\small ORCID: \href{https://orcid.org/0009-0005-9443-3679}{0009-0005-9443-3679}}
+\date{Preprint v1.0\\\small DOI: \href{https://doi.org/10.5281/zenodo.22885535}{10.5281/zenodo.22885535}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+W_nf(z)=(1+z+\cdots+z^{n-1})f(z^n),\qquad V_n=n^{-1/2}W_n,
+\]
+on the Hardy space $H^2$ of the unit disk, and set $\mathcal H_n=\Ran V_n$.
+For coprime integers $2\le m<n$, we reduce the compression geometry of
+$\mathcal H_m$ and $\mathcal H_n$ to a finite weighted path Laplacian whose
+edge weights are determined by the residues $jn\pmod m$. This yields exact
+sum and product identities for the principal-angle defects. We prove that the
+algebraic connectivity of the resulting path Laplacian is at most $2$, with
+equality exactly when $n\equiv\pm1\pmod m$. In those extremal cases the
+Laplacian has the classical Hahn spectrum $k(k+1)$, and hence the squared
+cosines of the distinct principal-angle values are
+$1-k(k+1)/(mn)$, $0\le k<m$. We also record the corresponding Friedrichs-angle
+and alternating-projection consequences. All results are unconditional.
+\end{abstract}
+
+\section{Introduction}
+For $n\ge1$, consider the weighted composition operators
+\[
+W_nf(z)=(1+z+\cdots+z^{n-1})f(z^n)
+\]
+on $\Hsq$. The semigroup $(W_n)_{n\ge1}$ and its connections with the
+Riemann hypothesis, invariant-subspace questions, and periodic dilation
+completeness were studied by Manzur Villa, Noor, and Santos
+\cite{ManzurNoorSantos2023}. In particular, $W_n^*W_n=nI$, so
+$V_n=W_n/\sqrt n$ is an isometry.
+
+This note studies a different feature of the same semigroup: the mutual
+positions of the closed ranges
+\[
+\mathcal H_n:=\Ran V_n.
+\]
+Principal angles and the related Friedrichs angle provide standard measures
+of the geometry of two closed subspaces; see, for example,
+Bjorck--Golub \cite{BjorckGolub1973}. A recent RH-related use of Friedrichs
+angles, for different subspaces in the Nyman--Beurling setting, appears in
+Yang \cite{Yang2026}.
+
+Our main observation is that for coprime $m,n$ the infinite-dimensional
+problem decomposes into copies of one finite $mn$-coordinate problem. The
+finite cross-Gram matrix is governed by a weighted path Laplacian. The
+weights are a permutation of
+\[
+\{j(m-j):1\le j<m\},
+\]
+with their order determined arithmetically by multiplication by $n$ modulo
+$m$. This gives two order-independent spectral invariants and a sharp
+extremal theorem. In the congruence classes $n\equiv\pm1\pmod m$ the path is
+the classical symmetric Hahn difference operator, giving a complete closed
+form for the spectrum.
+
+\section{Coefficient model and block-constant ranges}
+Identify $\Hsq$ isometrically with $\ell^2(\mathbb N_0)$ via Taylor
+coefficients, and let $(e_j)_{j\ge0}$ denote its standard basis. Then
+\[
+V_ne_j=\frac1{\sqrt n}\sum_{r=0}^{n-1}e_{nj+r}.
+\]
+Thus $\mathcal H_n$ consists exactly of sequences that are constant on each
+consecutive block of $n$ coordinates. Let $P_n=V_nV_n^*$ be the orthogonal
+projection onto $\mathcal H_n$.
+
+\begin{proposition}\label{prop:intersection}
+If $\gcd(m,n)=1$, then
+\[
+\mathcal H_m\cap\mathcal H_n=\mathcal H_{mn}.
+\]
+\end{proposition}
+
+\begin{proof}
+Work inside a block of $mn$ consecutive coordinates. A vector in the
+intersection is constant on every $m$-block and on every $n$-block. The
+bipartite overlap graph of these two partitions is connected: an interior
+cut separating the overlap graph would have to occur at a coordinate that is
+simultaneously a multiple of $m$ and of $n$, and coprimality excludes such a
+coordinate before $mn$. Hence the vector is constant on the entire
+$mn$-block. Different $mn$-blocks are independent, proving the claim.
+\end{proof}
+
+The same argument shows that the pair $(\mathcal H_m,\mathcal H_n)$ is an
+orthogonal infinite repetition of a single finite pair of block-constant
+subspaces in $\mathbb C^{mn}$.
+
+\section{The arithmetic overlap Laplacian}
+Assume throughout this section that $2\le m<n$ and $\gcd(m,n)=1$. Inside
+one $mn$-block, let $u_j$ ($0\le j<m$) be the normalized indicators of the
+$n$-blocks and $v_i$ ($0\le i<n$) the normalized indicators of the
+$m$-blocks. Let
+\[
+C_{ij}=\langle v_i,u_j\rangle.
+\]
+The eigenvalues of $G=C^*C$ are the squared singular values of the
+cross-projection and hence the squared cosines of the finite-block principal
+angles \cite{BjorckGolub1973}.
+
+For $1\le j<m$, let $r_j$ be the least positive residue of $jn$ modulo $m$:
+\[
+r_j\equiv jn\pmod m,\qquad 1\le r_j\le m-1,
+\]
+and put
+\[
+w_j=r_j(m-r_j).
+\]
+Let $L_{m,n}$ be the weighted path Laplacian on $m$ vertices with edge
+weights $w_1,\ldots,w_{m-1}$, i.e.
+\[
+(L_{m,n})_{j,j+1}=(L_{m,n})_{j+1,j}=-w_{j+1}
+\]
+with diagonal entries equal to the sum of incident edge weights.
+
+\begin{theorem}[Coprime compression reduction]\label{thm:compression}
+For coprime $2\le m<n$,
+\[
+G=I-\frac1{mn}L_{m,n}.
+\]
+Consequently, if
+\[
+0=\mu_0<\mu_1<\cdots<\mu_{m-1}
+\]
+are the eigenvalues of $L_{m,n}$, then the distinct blockwise
+principal-angle values satisfy
+\[
+\cos^2\theta_k=1-\frac{\mu_k}{mn},\qquad 0\le k<m.
+\]
+Each value occurs with infinite multiplicity for the full pair
+$(\mathcal H_m,\mathcal H_n)$.
+\end{theorem}
+
+\begin{proof}
+The boundary between consecutive $n$-blocks occurs at $jn$. Relative to the
+$m$-partition, exactly one $m$-block straddles that boundary. Its two pieces
+have lengths $r_j$ and $m-r_j$, so the off-diagonal contribution to the
+neighboring Gram entry is
+\[
+\frac{r_j(m-r_j)}{mn}=\frac{w_j}{mn}.
+\]
+Because $n>m$, no single $m$-block meets two nonadjacent $n$-blocks. Hence
+$G$ is tridiagonal, with neighboring entries $w_j/(mn)$ and diagonal entries
+$1$ minus the sum of the adjacent normalized edge weights. This is exactly
+$I-L_{m,n}/(mn)$.
+
+All $w_j$ are positive, so the weighted path is connected. Its Laplacian is
+an irreducible symmetric tridiagonal matrix and therefore has simple
+spectrum. The principal-angle statement follows from the standard
+cross-Gram characterization. Finally, the same $mn$-block geometry repeats
+orthogonally along $\ell^2(\mathbb N_0)$, giving infinite multiplicity.
+\end{proof}
+
+\section{Universal spectral invariants}
+Since multiplication by $n$ permutes the nonzero residues modulo $m$,
+\[
+\{r_1,\ldots,r_{m-1}\}=\{1,\ldots,m-1\}.
+\]
+Thus the multiset of edge weights is independent of the residue class of
+$n$; only their order changes.
+
+\begin{theorem}[Trace and product invariants]\label{thm:invariants}
+Under the hypotheses of Theorem~\ref{thm:compression},
+\[
+\sum_{k=1}^{m-1}\sin^2\theta_k=\frac{m^2-1}{3n},
+\]
+and
+\[
+\prod_{k=1}^{m-1}\sin^2\theta_k
+=\frac{m((m-1)!)^2}{(mn)^{m-1}}.
+\]
+\end{theorem}
+
+\begin{proof}
+First,
+\[
+\sum_{j=1}^{m-1}w_j
+=\sum_{r=1}^{m-1}r(m-r)
+=\frac{m(m^2-1)}6.
+\]
+The trace of a weighted path Laplacian is twice the total edge weight, so
+\[
+\sum_{k=1}^{m-1}\mu_k=\operatorname{tr}L_{m,n}
+=\frac{m(m^2-1)}3.
+\]
+Using $\sin^2\theta_k=\mu_k/(mn)$ gives the sum identity.
+
+For the product, the weighted matrix-tree theorem applied to a path gives
+\[
+\prod_{k=1}^{m-1}\mu_k=m\prod_{j=1}^{m-1}w_j.
+\]
+Since the $r_j$ form a permutation of $1,\ldots,m-1$,
+\[
+\prod_{j=1}^{m-1}w_j
+=\prod_{r=1}^{m-1}r(m-r)=((m-1)!)^2.
+\]
+Dividing by $(mn)^{m-1}$ yields the second formula.
+\end{proof}
+
+\section{A sharp extremal theorem}
+We next determine the largest possible algebraic connectivity among the
+arithmetic orderings above.
+
+\begin{theorem}[Sharp algebraic-connectivity bound]\label{thm:extremal}
+Let $0=\mu_0<\mu_1<\cdots<\mu_{m-1}$ be the spectrum of $L_{m,n}$. Then
+\[
+\mu_1\le2.
+\]
+Equality holds if and only if
+\[
+n\equiv\pm1\pmod m.
+\]
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+x_j=j-\frac{m-1}{2},\qquad 0\le j<m.
+\]
+Then $x\perp\1$, and $x_j-x_{j-1}=1$. The Rayleigh quotient is therefore
+\[
+\frac{x^TL_{m,n}x}{x^Tx}
+=\frac{\sum_{j=1}^{m-1}w_j}
+{\sum_{j=0}^{m-1}(j-(m-1)/2)^2}=2,
+\]
+using the sum computed in Theorem~\ref{thm:invariants}. By Rayleigh--Ritz,
+$\mu_1\le2$.
+
+If $\mu_1=2$, then $x$ attains the minimum and hence
+$L_{m,n}x=2x$. At the left endpoint,
+\[
+-w_1=2x_0=-(m-1),
+\]
+so $w_1=m-1$. Since $w_1=r_1(m-r_1)$, this implies
+$r_1=1$ or $r_1=m-1$. But $r_1\equiv n\pmod m$, hence
+$n\equiv\pm1\pmod m$.
+
+Conversely, if $n\equiv\pm1\pmod m$, then
+$r_j=j$ or $m-j$, so in either case $w_j=j(m-j)$. The Hahn-spectrum
+calculation in Section~\ref{sec:hahn} gives $\mu_1=2$.
+\end{proof}
+
+\begin{remark}
+The equality argument also determines the entire positional weight sequence.
+Indeed, if $Lx=2x$ for the centered linear vector, then the interior vertex
+equations give
+\[
+w_{j+1}=w_j+(m-1)-2j,
+\]
+and induction from $w_1=m-1$ yields $w_j=j(m-j)$.
+Thus among all permutations of the fixed multiset
+$\{j(m-j):1\le j<m\}$, the natural Hahn ordering is the unique positional
+weight sequence attaining algebraic connectivity $2$ (its reversal is the
+same sequence because $j(m-j)=(m-j)j$).
+\end{remark}
+
+\begin{corollary}[Friedrichs-angle extremality]\label{cor:friedrichs}
+For coprime $2\le m<n$,
+\[
+\cF(\mathcal H_m,\mathcal H_n)
+\ge \sqrt{1-\frac{2}{mn}},
+\]
+with equality if and only if $n\equiv\pm1\pmod m$.
+\end{corollary}
+
+\begin{proof}
+After removing the common intersection, the largest squared cosine is
+$1-\mu_1/(mn)$. Apply Theorem~\ref{thm:extremal}.
+\end{proof}
+
+\section{The Hahn closed-form cases}\label{sec:hahn}
+If $n\equiv\pm1\pmod m$, then
+\[
+w_j=j(m-j),\qquad 1\le j<m.
+\]
+This weighted second-order difference operator is the symmetric Hahn
+operator. Its classical spectrum is
+\[
+\{k(k+1):0\le k<m\};
+\]
+see, for example, the Hahn-polynomial treatment in
+\cite{KoekoekLeskySwarttouw2010}.
+
+For completeness, there is also a short elementary verification. Identify a
+vector in $\mathbb C^m$ with the values of a polynomial $p(j)$ of degree at
+most $m-1$. Then
+\[
+(L_mp)(j)=j(m-j)[p(j)-p(j-1)]
+ +(j+1)(m-j-1)[p(j)-p(j+1)].
+\]
+If $p(j)=aj^k$ plus lower-order terms, the degree-$k+1$ terms cancel and the
+leading surviving term is $ak(k+1)j^k$. Hence the operator preserves the
+polynomial-degree filtration and is triangular in the monomial basis with
+diagonal $k(k+1)$.
+
+\begin{theorem}[Complete extremal spectrum]\label{thm:hahn}
+If $2\le m<n$ and $n\equiv\pm1\pmod m$, then
+\[
+\spec(P_nP_mP_n|_{\mathcal H_n})
+=\left\{1-\frac{k(k+1)}{mn}:0\le k<m\right\}.
+\]
+Equivalently, the distinct principal-angle values satisfy
+\[
+\cos^2\theta_k=1-\frac{k(k+1)}{mn},\qquad 0\le k<m.
+\]
+Each value occurs with infinite multiplicity globally.
+\end{theorem}
+
+\section{Alternating projections}
+For two closed subspaces $M,N$, the exact two-subspace alternating-projection
+formula of Kayalar and Weinert \cite{KayalarWeinert1988} is
+\[
+\|(P_NP_M)^r-P_{M\cap N}\|=\cF(M,N)^{2r-1},\qquad r\ge1.
+\]
+Combining this with Proposition~\ref{prop:intersection} and
+Corollary~\ref{cor:friedrichs} gives the following.
+
+\begin{corollary}
+For coprime $2\le m<n$,
+\[
+\|(P_nP_m)^r-P_{mn}\|
+=\left(1-\frac{\mu_1}{mn}\right)^{r-1/2}.
+\]
+In the extremal cases $n\equiv\pm1\pmod m$,
+\[
+\|(P_nP_m)^r-P_{mn}\|
+=\left(1-\frac2{mn}\right)^{r-1/2}.
+\]
+\end{corollary}
+
+\section{Discussion}
+The coprime reduction separates two pieces of arithmetic information. The
+multiset of edge weights is universal for fixed $m$, while their order is
+determined by the residue class of $n$ modulo $m$. The trace and
+pseudodeterminant are therefore order-independent, whereas the individual
+principal angles generally depend on the arithmetic ordering. The
+congruence classes $n\equiv\pm1\pmod m$ are distinguished twice: they
+maximize the relevant spectral separation and simultaneously admit the
+complete Hahn closed form.
+
+The weighted-composition semigroup was developed in RH-related work
+\cite{ManzurNoorSantos2023}, but no statement in this paper assumes the
+Riemann hypothesis or asserts a proof of it.
+
+\section*{Research assistance note}
+ChatGPT (OpenAI) was used for editorial assistance, literature-search support,
+and numerical verification. The author is solely responsible for all
+mathematical statements, proofs, and conclusions.
+
+\begin{thebibliography}{9}
+\bibitem{ManzurNoorSantos2023}
+J. C. Manzur Villa, S. W. Noor, and C. F. dos Santos,
+\emph{A weighted composition semigroup related to three open problems},
+J. Math. Anal. Appl. 525 (2023), no. 1, 127261.
+\href{https://doi.org/10.1016/j.jmaa.2023.127261}{doi:10.1016/j.jmaa.2023.127261}.
+
+\bibitem{BjorckGolub1973}
+A. Bjorck and G. H. Golub,
+\emph{Numerical methods for computing angles between linear subspaces},
+Math. Comp. 27 (1973), no. 123, 579--594.
+\href{https://doi.org/10.1090/S0025-5718-1973-0348991-3}{doi:10.1090/S0025-5718-1973-0348991-3}.
+
+\bibitem{KoekoekLeskySwarttouw2010}
+R. Koekoek, P. A. Lesky, and R. F. Swarttouw,
+\emph{Hypergeometric Orthogonal Polynomials and Their $q$-Analogues},
+Springer, Berlin, 2010.
+\href{https://doi.org/10.1007/978-3-642-05014-5}{doi:10.1007/978-3-642-05014-5}.
+
+\bibitem{KayalarWeinert1988}
+S. Kayalar and H. L. Weinert,
+\emph{Error bounds for the method of alternating projections},
+Math. Control Signals Systems 1 (1988), no. 1, 43--59.
+\href{https://doi.org/10.1007/BF02551235}{doi:10.1007/BF02551235}.
+
+\bibitem{Yang2026}
+J. Yang,
+\emph{A Friedrichs angle between the Nyman--Beurling spaces and the Riemann hypothesis},
+J. Math. Anal. Appl. 560 (2026), no. 1, 130494.
+\href{https://doi.org/10.1016/j.jmaa.2026.130494}{doi:10.1016/j.jmaa.2026.130494}.
+\end{thebibliography}
+\end{document}

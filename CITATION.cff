@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the accompanying preprint."
+title: "Principal Angles Between Arithmetic Weighted-Composition Ranges in H^2"
+type: article
+authors:
+  - family-names: Claiborne
+    given-names: Shad
+    orcid: "https://orcid.org/0009-0005-9443-3679"
+version: "1.0.0"
+date-released: 2026-09-21
+doi: "10.5281/zenodo.22885535"
+repository-code: "https://github.com/shad-claiborne/principal-angles-weighted-composition"
+keywords:
+  - Hardy spaces
+  - weighted composition operators
+  - principal angles
+  - Friedrichs angle
+  - weighted graph Laplacians
+  - Hahn polynomials
+  - alternating projections
+  - operator theory
